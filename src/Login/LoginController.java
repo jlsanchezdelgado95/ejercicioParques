@@ -33,6 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Comunidad;
 import vista.DeleteController;
+import vista.InsertController;
 import vista.UpdateController;
 
 /**
@@ -163,11 +164,11 @@ public class LoginController implements Initializable {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/vista/InsertController.fxml"));
+            loader.setLocation(getClass().getResource("/vista/Insert.fxml"));
             root = loader.load();
 
             //OBTENER EL CONTROLADOR DE LA VENTANA
-            DeleteController datosBorrar = loader.getController();
+            InsertController datosBorrar = loader.getController();
 
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para insertar");

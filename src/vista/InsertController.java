@@ -8,6 +8,7 @@ package vista;
 import Datos.GestionBD;
 import java.net.URL;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,12 +47,11 @@ public class InsertController implements Initializable {
     }
 
     @FXML
-    private void Guardar(ActionEvent event) {
+    private void Guardar(ActionEvent event) throws SQLException {
         String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
                 + " values(?,?,?,?)");
         Parques p = new Parques((Integer.valueOf(tfIdParque.getText())), tfNombre.getText(), Double.valueOf(tfExtension.getText()), Integer.valueOf(cbComunidades.getSelectionModel().getSelectedItem().toString()));
-        
-        int numFilas = 0;
+        int numFilas = gestion.insertarParque(p);
         if (numFilas > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Informacion");

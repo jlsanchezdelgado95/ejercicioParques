@@ -15,7 +15,7 @@
       <Button fx:id="bGuardar" layoutX="46.0" layoutY="313.0" mnemonicParsing="false" onAction="#Guardar" prefHeight="40.0" prefWidth="76.0" text="Guardar" />
       <ComboBox fx:id="cbComunidades" layoutX="166.0" layoutY="330.0" prefWidth="150.0" />
       <Button fx:id="bBorrar" layoutX="225.0" layoutY="267.0" mnemonicParsing="false" onAction="#Borrar" text="Borrar" />
-      <Button fx:id="bInsertar" layoutX="140.0" layoutY="255.0" mnemonicParsing="false" onAction="#Insertar" text="Button" />
+      <Button fx:id="bInsertar" layoutX="140.0" layoutY="255.0" mnemonicParsing="false" onAction="#Insertar" text="Insertar" />
       <Button fx:id="bModificar" layoutX="326.0" layoutY="267.0" mnemonicParsing="false" onAction="#Modificar" text="Modificar" />
       <Label layoutX="70.0" layoutY="39.0" text="Usuario" />
       <Label layoutX="70.0" layoutY="99.0" text="Contraseña" />

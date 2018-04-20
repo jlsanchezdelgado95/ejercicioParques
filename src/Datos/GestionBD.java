@@ -38,17 +38,16 @@ public class GestionBD {
         return conectado;
     }
 
-    private int insertarParque(Parques p) throws SQLException {
+    public int insertarParque(Parques p) throws SQLException {
         int filas = 0;
         String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
                 + " values(?,?,?,?)");
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, Integer.valueOf(tfIdParque.getText()));
-        ps.setString(2, tfNombre.getText());
-        ps.setDouble(3, Double.valueOf(tfExtension.getText()));
-        ps.setInt(4, Integer.valueOf(cbComunidades.getSelectionModel().getSelectedItem().getId()));
-
-        int numFilas = ps.executeUpdate();//Se ejecuta el insert
+        ps.setInt(1, p.getIdParque());
+        ps.setString(2, p.getNombre());
+        ps.setDouble(3, p.getExtension());
+        ps.setInt(4, p.getIdComunidad());
+        filas = ps.executeUpdate();//Se ejecuta el insert
         return filas;
     }
 
