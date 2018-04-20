@@ -9,9 +9,14 @@ import Login.LoginController;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import modelo.Comunidad;
 import modelo.Parques;
 
 /**
@@ -49,6 +54,21 @@ public class GestionBD {
         ps.setInt(4, p.getIdComunidad());
         filas = ps.executeUpdate();//Se ejecuta el insert
         return filas;
+    }
+    
+        public List rellenarListaComunidades() throws SQLException {
+            List lista = new ArrayList();
+        String id, nombreMetodo;
+        PreparedStatement ps = conn.prepareStatement("select * from comunidad");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {//Siguiente fila
+            id = String.valueOf(rs.getInt("id"));
+            nombreMetodo = rs.getString("nombre");
+            Comunidad comu = new Comunidad(id, nombreMetodo);
+            lista.add(comu);
+        }
+        System.out.println(lista.toString());
+        return lista;
     }
 
 }

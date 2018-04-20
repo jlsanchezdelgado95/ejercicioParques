@@ -10,6 +10,9 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,10 +43,21 @@ public class InsertController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        cargaListaComunidades();
+    }
+    
+    private void cargaListaComunidades(){
+                try {
+            cbComunidades.setItems(FXCollections.observableArrayList(gestion.rellenarListaComunidades()));
+            // TODO
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML

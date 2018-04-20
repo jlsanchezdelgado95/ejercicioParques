@@ -113,7 +113,6 @@ public class LoginController implements Initializable {
     @FXML
     private void Borrar(ActionEvent event) {
         Parent root;
-
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/vista/Delete.fxml"));
@@ -166,23 +165,20 @@ public class LoginController implements Initializable {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/vista/Insert.fxml"));
             root = loader.load();
-
             //OBTENER EL CONTROLADOR DE LA VENTANA
             InsertController datosBorrar = loader.getController();
-
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para insertar");
             escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
             escenario.setScene(new Scene(root));
             escenario.showAndWait();
-
             //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
 //            String usuario = datosBorrar;
 //            if (usuario != null) {
 //                label.setText("Nombre escrito: " + usuario);
 //            }
         } catch (IOException ex) {
-            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de login");
+            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de insertar");
         }
     }
 
