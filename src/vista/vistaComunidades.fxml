@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.VistaComunidadesController">
+   <children>
+      <TextField layoutX="209.0" layoutY="75.0" prefHeight="25.0" prefWidth="72.0" />
+      <TextField layoutX="207.0" layoutY="131.0" />
+      <Label layoutX="86.0" layoutY="79.0" text="Id" />
+      <Label layoutX="319.0" layoutY="79.0" text="De X" />
+      <Label layoutX="86.0" layoutY="135.0" text="Comunidad" />
+      <Label layoutX="451.0" layoutY="39.0" text="CONECTADO?" />
+      <Separator layoutX="45.0" layoutY="256.0" prefHeight="7.0" prefWidth="503.0" />
+      <Button layoutX="48.0" layoutY="293.0" mnemonicParsing="false" onAction="#Primero" text="Primero" />
+      <Button layoutX="183.0" layoutY="293.0" mnemonicParsing="false" onAction="#Anterior" text="&lt;&lt;" />
+      <Button layoutX="307.0" layoutY="293.0" mnemonicParsing="false" onAction="#Siguiente" text="&gt;&gt;" />
+      <Button layoutX="451.0" layoutY="293.0" mnemonicParsing="false" onAction="#Ultimo" text="Ultimo" />
+   </children>
+</AnchorPane>

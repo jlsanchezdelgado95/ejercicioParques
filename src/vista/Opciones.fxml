@@ -9,5 +9,6 @@
       <Button layoutX="88.0" layoutY="148.0" mnemonicParsing="false" onAction="#Insertar" prefHeight="50.0" prefWidth="100.0" text="Insertar" AnchorPane.leftAnchor="88.0" />
       <Button layoutX="259.0" layoutY="148.0" mnemonicParsing="false" onAction="#Borrar" prefHeight="50.0" prefWidth="100.0" text="Borrar" />
       <Button layoutX="414.0" layoutY="148.0" mnemonicParsing="false" onAction="#Modificar" prefHeight="50.0" prefWidth="100.0" text="Modificar" />
+      <Button layoutX="202.0" layoutY="252.0" mnemonicParsing="false" onAction="#verComunidades" prefHeight="81.0" prefWidth="215.0" text="VER COMUNIDADES" />
    </children>
 </AnchorPane>

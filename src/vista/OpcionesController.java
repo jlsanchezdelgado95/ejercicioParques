@@ -46,15 +46,8 @@ public class OpcionesController implements Initializable {
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
             escenario.setScene(new Scene(root));
             escenario.showAndWait();
-            //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
-//            String usuario = datosBorrar;
-//            if (usuario != null) {
-//                label.setText("Nombre escrito: " + usuario);
-//            }
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de insertar");
-            ex.getStackTrace();
-            ex.printStackTrace();
         }
     }
 
@@ -72,11 +65,6 @@ public class OpcionesController implements Initializable {
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
             escenario.setScene(new Scene(root));
             escenario.showAndWait();
-            //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
-//            String usuario = datosBorrar;
-//            if (usuario != null) {
-//                label.setText("Nombre escrito: " + usuario);
-//            }
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de borrar");
             ex.getStackTrace();
@@ -86,6 +74,25 @@ public class OpcionesController implements Initializable {
 
     @FXML
     private void Modificar(ActionEvent event) {
+    }
+
+    @FXML
+    private void verComunidades(ActionEvent event) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/vista/vistaComunidades.fxml"));
+            root = loader.load();
+            //OBTENER EL CONTROLADOR DE LA VENTANA
+            VistaComunidadesController datos = loader.getController();
+            Stage escenario = new Stage();
+            escenario.setTitle("Ventana para borrar");
+            escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
+            escenario.setScene(new Scene(root));
+            escenario.showAndWait();
+        } catch (IOException ex) {
+            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de borrar");
+        }
     }
 
 }

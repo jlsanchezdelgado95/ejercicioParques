@@ -61,8 +61,7 @@ public class InsertController implements Initializable {
     }
 
     private void cargaListaComunidades() {
-            cbComunidades.setItems(FXCollections.observableArrayList(listaInsert));
-            // TODO
+        cbComunidades.setItems(FXCollections.observableArrayList(listaInsert));
     }
 
     @FXML
@@ -79,5 +78,4 @@ public class InsertController implements Initializable {
             alert.showAndWait();
         }
     }
-
 }
