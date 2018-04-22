@@ -7,8 +7,9 @@ package vista;
 
 import Datos.GestionBD;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import modelo.Comunidad;
 import modelo.Parques;
 
 /**
@@ -38,33 +40,36 @@ public class InsertController implements Initializable {
     @FXML
     private Button bGuardar;
     @FXML
-    private ComboBox<?> cbComunidades;
-    private GestionBD gestion;
+    private ComboBox<Comunidad> cbComunidades;
+    private GestionBD gestion = new GestionBD("root", "root");
+    private List listaInsert = new ArrayList<>();
 
     /**
      * Initializes the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        cargaListaComunidades();
-    }
-    
-    private void cargaListaComunidades(){
-                try {
-            cbComunidades.setItems(FXCollections.observableArrayList(gestion.rellenarListaComunidades()));
-            // TODO
+        try {
+            listaInsert = gestion.rellenarListaComunidades();
         } catch (SQLException ex) {
             Logger.getLogger(InsertController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        cargaListaComunidades();
+    }
+
+    private void cargaListaComunidades() {
+            cbComunidades.setItems(FXCollections.observableArrayList(listaInsert));
+            // TODO
     }
 
     @FXML
     private void Guardar(ActionEvent event) throws SQLException {
-        String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
-                + " values(?,?,?,?)");
-        Parques p = new Parques((Integer.valueOf(tfIdParque.getText())), tfNombre.getText(), Double.valueOf(tfExtension.getText()), Integer.valueOf(cbComunidades.getSelectionModel().getSelectedItem().toString()));
+        Comunidad comu = cbComunidades.getSelectionModel().getSelectedItem();
+        System.out.println(comu);
+        Parques p = new Parques((Integer.valueOf(tfIdParque.getText())), tfNombre.getText(), Double.valueOf(tfExtension.getText()), Integer.valueOf(comu.getId()));
         int numFilas = gestion.insertarParque(p);
         if (numFilas > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

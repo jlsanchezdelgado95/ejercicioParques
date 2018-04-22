@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 import modelo.Comunidad;
 import modelo.Parques;
 
@@ -29,11 +28,16 @@ public class GestionBD {
     private String usuario;
     private String password;
 
-    private boolean conexion() {
+    public GestionBD(String usuario, String password) {
+        this.usuario = usuario;
+        this.password = password;
+    }
+
+    public boolean conexion() {
         boolean conectado = false;
         String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
         try {
-            conn = DriverManager.getConnection(urlJDBC, "root", "root");
+            conn = DriverManager.getConnection(urlJDBC, usuario, password);
             if (conn.isValid(0)) {
                 conectado = true;
             }
@@ -47,6 +51,8 @@ public class GestionBD {
         int filas = 0;
         String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
                 + " values(?,?,?,?)");
+        String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
+        conn = DriverManager.getConnection(urlJDBC, usuario, password);
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, p.getIdParque());
         ps.setString(2, p.getNombre());
@@ -55,11 +61,14 @@ public class GestionBD {
         filas = ps.executeUpdate();//Se ejecuta el insert
         return filas;
     }
-    
-        public List rellenarListaComunidades() throws SQLException {
-            List lista = new ArrayList();
+
+    public List rellenarListaComunidades() throws SQLException {
+        List lista = new ArrayList();
         String id, nombreMetodo;
-        PreparedStatement ps = conn.prepareStatement("select * from comunidad");
+        String sql = ("select *" + " from comunidad");
+        String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
+        conn = DriverManager.getConnection(urlJDBC, usuario, password);
+        PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {//Siguiente fila
             id = String.valueOf(rs.getInt("id"));

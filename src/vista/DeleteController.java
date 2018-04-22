@@ -7,7 +7,9 @@ package vista;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -15,6 +17,9 @@ import javafx.fxml.Initializable;
  * @author Kokekui
  */
 public class DeleteController implements Initializable {
+
+    @FXML
+    private ComboBox<?> cbParques;
 
     /**
      * Initializes the controller class.

@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.DeleteController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.DeleteController">
+   <children>
+      <Label layoutX="84.0" layoutY="101.0" text="Que parque quieres borrar:" />
+      <ComboBox fx:id="cbParques" layoutX="247.0" layoutY="97.0" prefWidth="150.0" />
+      <Button layoutX="221.0" layoutY="155.0" mnemonicParsing="false" prefHeight="132.0" prefWidth="174.0" text="Borrar" />
+   </children>
 </AnchorPane>

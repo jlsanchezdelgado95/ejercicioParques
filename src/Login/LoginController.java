@@ -5,19 +5,13 @@
  */
 package Login;
 
+import Datos.GestionBD;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +27,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Comunidad;
 import vista.DeleteController;
-import vista.InsertController;
+import vista.OpcionesController;
 import vista.UpdateController;
 
 /**
@@ -45,52 +39,24 @@ public class LoginController implements Initializable {
     private Label label;
     @FXML
     private Label lConexion;
-    @FXML
     private TextField tfIdParque;
-    @FXML
     private TextField tfNombre;
-    @FXML
     private TextField tfExtension;
-    @FXML
-    private Button bGuardar;
     private Connection conn;
-    @FXML
     private ComboBox<Comunidad> cbComunidades;
-    private List<Comunidad> lista = new ArrayList<>();
-    @FXML
-    private Button bBorrar;
-    @FXML
-    private Button bModificar;
-    @FXML
-    private Button bInsertar;
     @FXML
     private TextField tfUsuario;
     @FXML
     private TextField tfContraseña;
     @FXML
     private Button bConectar;
+    private GestionBD gestion;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
 
-    private void rellenarListaComunidades() throws SQLException {
-        String id, nombreMetodo;
-        PreparedStatement ps = conn.prepareStatement("select * from comunidad");
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {//Siguiente fila
-            id = String.valueOf(rs.getInt("id"));
-            nombreMetodo = rs.getString("nombre");
-            Comunidad comu = new Comunidad(id, nombreMetodo);
-            lista.add(comu);
-        }
-        System.out.println(lista.toString());
-        cbComunidades.setItems(FXCollections.observableArrayList(lista));
-        cbComunidades.getSelectionModel().selectFirst();
-    }
-
-    @FXML
     private void Guardar(ActionEvent event) throws SQLException {
         String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
                 + " values(?,?,?,?)");
@@ -110,7 +76,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
     private void Borrar(ActionEvent event) {
         Parent root;
         try {
@@ -134,7 +99,6 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML
     private void Modificar(ActionEvent event) {
         Parent root;
         try {
@@ -154,46 +118,32 @@ public class LoginController implements Initializable {
 //                label.setText("Nombre escrito: " + usuario);
 //            }
         } catch (IOException ex) {
-            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de login");
-        }
-    }
-
-    @FXML
-    private void Insertar(ActionEvent event) {
-        Parent root;
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/vista/Insert.fxml"));
-            root = loader.load();
-            //OBTENER EL CONTROLADOR DE LA VENTANA
-            InsertController datosBorrar = loader.getController();
-            Stage escenario = new Stage();
-            escenario.setTitle("Ventana para insertar");
-            escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
-            escenario.setScene(new Scene(root));
-            escenario.showAndWait();
-            //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
-//            String usuario = datosBorrar;
-//            if (usuario != null) {
-//                label.setText("Nombre escrito: " + usuario);
-//            }
-        } catch (IOException ex) {
-            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de insertar");
+            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de Modificar");
         }
     }
 
     @FXML
     private void Conectar(ActionEvent event) {
-        String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
-        try {
-            conn = DriverManager.getConnection(urlJDBC, tfUsuario.getText(), tfContraseña.getText());
-            if (conn.isValid(0)) {
-                lConexion.setText("CONECTADO");
-                rellenarListaComunidades();
+        gestion = new GestionBD(tfUsuario.getText(), tfContraseña.getText());
+        if (gestion.conexion()) {
+            lConexion.setText("CONECTADO");
+            Parent root;
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/vista/Opciones.fxml"));
+                root = loader.load();
+                //OBTENER EL CONTROLADOR DE LA VENTANA
+                OpcionesController datos = loader.getController();
+                Stage escenario = new Stage();
+                escenario.setTitle("Opciones");
+                escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
+                escenario.setScene(new Scene(root));
+                escenario.showAndWait();
+            } catch (IOException ex) {
+                System.out.println("ERROR IOExcepction:  No se encuentra la ventana de opciones");
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            lConexion.setText("NO CONECTADO");
         }
-
     }
 }
