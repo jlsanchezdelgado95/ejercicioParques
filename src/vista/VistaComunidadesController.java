@@ -5,11 +5,21 @@
  */
 package vista;
 
+import Datos.GestionBD;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,16 +28,48 @@ import javafx.fxml.Initializable;
  */
 public class VistaComunidadesController implements Initializable {
 
+    private GestionBD conn;
+    private List <String> listadoComunidades = new ArrayList<>();
+    @FXML
+    private TextField tfId;
+    @FXML
+    private TextField tfNombre;
+    private ResultSet rs;
+    private Integer id;
+    private String nombre;
+
+    public VistaComunidadesController(GestionBD conn) {
+        this.conn = conn;
+    }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        try {
+            Connection conexion = conn.getConn();
+            PreparedStatement ps = conexion.prepareStatement("select * from comunidad");
+            rs = ps.executeQuery();
+            id = rs.getInt("id");
+            nombre = rs.getString("nombre");
+            tfId.setText(String.valueOf(id));
+            tfNombre.setText(nombre);
+//            while(rs.next()){
+//                nombre = rs.getString("nombre");
+//                listadoComunidades.add(nombre);
+//            }
+            // TODO
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaComunidadesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @FXML
-    private void Primero(ActionEvent event) {
+    private void Primero(ActionEvent event) throws SQLException {
+        rs.first();
+        tfId.setText(String.valueOf(id));
+        tfNombre.setText(nombre);
     }
 
     @FXML
@@ -41,5 +83,13 @@ public class VistaComunidadesController implements Initializable {
     @FXML
     private void Ultimo(ActionEvent event) {
     }
-    
+
+    public GestionBD getConn() {
+        return conn;
+    }
+
+    public void setConn(GestionBD conn) {
+        this.conn = conn;
+    }
+
 }

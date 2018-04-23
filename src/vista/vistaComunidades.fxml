@@ -6,11 +6,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.VistaComunidadesController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.VistaComunidadesController">
    <children>
-      <TextField layoutX="209.0" layoutY="75.0" prefHeight="25.0" prefWidth="72.0" />
-      <TextField layoutX="207.0" layoutY="131.0" />
+      <TextField fx:id="tfId" layoutX="209.0" layoutY="75.0" prefHeight="25.0" prefWidth="72.0" />
+      <TextField fx:id="tfNombre" layoutX="207.0" layoutY="131.0" />
       <Label layoutX="86.0" layoutY="79.0" text="Id" />
       <Label layoutX="319.0" layoutY="79.0" text="De X" />
       <Label layoutX="86.0" layoutY="135.0" text="Comunidad" />

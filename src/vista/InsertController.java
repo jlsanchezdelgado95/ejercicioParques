@@ -41,7 +41,7 @@ public class InsertController implements Initializable {
     private Button bGuardar;
     @FXML
     private ComboBox<Comunidad> cbComunidades;
-    private GestionBD gestion = new GestionBD("root", "root");
+    private GestionBD gestion;
     private List listaInsert = new ArrayList<>();
 
     /**
@@ -78,4 +78,62 @@ public class InsertController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    // gets y sets
+    public TextField getTfIdParque() {
+        return tfIdParque;
+    }
+
+    public void setTfIdParque(TextField tfIdParque) {
+        this.tfIdParque = tfIdParque;
+    }
+
+    public TextField getTfNombre() {
+        return tfNombre;
+    }
+
+    public void setTfNombre(TextField tfNombre) {
+        this.tfNombre = tfNombre;
+    }
+
+    public TextField getTfExtension() {
+        return tfExtension;
+    }
+
+    public void setTfExtension(TextField tfExtension) {
+        this.tfExtension = tfExtension;
+    }
+
+    public Button getbGuardar() {
+        return bGuardar;
+    }
+
+    public void setbGuardar(Button bGuardar) {
+        this.bGuardar = bGuardar;
+    }
+
+    public ComboBox<Comunidad> getCbComunidades() {
+        return cbComunidades;
+    }
+
+    public void setCbComunidades(ComboBox<Comunidad> cbComunidades) {
+        this.cbComunidades = cbComunidades;
+    }
+
+    public GestionBD getGestion() {
+        return gestion;
+    }
+
+    public void setGestion(GestionBD gestion) {
+        this.gestion = gestion;
+    }
+
+    public List getListaInsert() {
+        return listaInsert;
+    }
+
+    public void setListaInsert(List listaInsert) {
+        this.listaInsert = listaInsert;
+    }
+
 }

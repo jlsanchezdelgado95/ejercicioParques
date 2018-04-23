@@ -5,6 +5,7 @@
  */
 package vista;
 
+import Datos.GestionBD;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,12 +27,18 @@ public class OpcionesController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
+    private GestionBD conn;
+
+ 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
+    
     @FXML
     private void Insertar(ActionEvent event) {
         Parent root;
@@ -41,6 +48,7 @@ public class OpcionesController implements Initializable {
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
             InsertController datos = loader.getController();
+            datos.setGestion(conn);
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para insertar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -85,6 +93,7 @@ public class OpcionesController implements Initializable {
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
             VistaComunidadesController datos = loader.getController();
+            datos.setConn(conn);
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para borrar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -93,6 +102,14 @@ public class OpcionesController implements Initializable {
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de borrar");
         }
+    }
+
+    public GestionBD getConn() {
+        return conn;
+    }
+
+    public void setConn(GestionBD conn) {
+        this.conn = conn;
     }
 
 }

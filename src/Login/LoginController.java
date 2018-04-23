@@ -65,7 +65,6 @@ public class LoginController implements Initializable {
         ps.setString(2, tfNombre.getText());
         ps.setDouble(3, Double.valueOf(tfExtension.getText()));
         ps.setInt(4, Integer.valueOf(cbComunidades.getSelectionModel().getSelectedItem().getId()));
-
         int numFilas = ps.executeUpdate();//Se ejecuta el insert
         if (numFilas > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -89,11 +88,6 @@ public class LoginController implements Initializable {
             escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
             escenario.setScene(new Scene(root));
             escenario.showAndWait();
-            //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
-//            String usuario = datosBorrar;
-//            if (usuario != null) {
-//                label.setText("Nombre escrito: " + usuario);
-//            }
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana");
         }
@@ -112,11 +106,6 @@ public class LoginController implements Initializable {
             escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
             escenario.setScene(new Scene(root));
             escenario.showAndWait();
-            //RECOGEMOS  LA INFORMACION ESCRITA EN LA OTRA VENTANA
-//            String usuario = datosBorrar;
-//            if (usuario != null) {
-//                label.setText("Nombre escrito: " + usuario);
-//            }
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de Modificar");
         }
@@ -134,6 +123,7 @@ public class LoginController implements Initializable {
                 root = loader.load();
                 //OBTENER EL CONTROLADOR DE LA VENTANA
                 OpcionesController datos = loader.getController();
+                datos.setConn(gestion);
                 Stage escenario = new Stage();
                 escenario.setTitle("Opciones");
                 escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -141,6 +131,7 @@ public class LoginController implements Initializable {
                 escenario.showAndWait();
             } catch (IOException ex) {
                 System.out.println("ERROR IOExcepction:  No se encuentra la ventana de opciones");
+                ex.printStackTrace();
             }
         } else {
             lConexion.setText("NO CONECTADO");

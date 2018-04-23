@@ -32,6 +32,7 @@ public class GestionBD {
         this.usuario = usuario;
         this.password = password;
     }
+    
 
     public boolean conexion() {
         boolean conectado = false;
@@ -51,8 +52,6 @@ public class GestionBD {
         int filas = 0;
         String sql = ("insert into " + " parque(id,nombre,extension,idcomunidad) "
                 + " values(?,?,?,?)");
-        String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
-        conn = DriverManager.getConnection(urlJDBC, usuario, password);
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setInt(1, p.getIdParque());
         ps.setString(2, p.getNombre());
@@ -66,8 +65,6 @@ public class GestionBD {
         List lista = new ArrayList();
         String id, nombreMetodo;
         String sql = ("select *" + " from comunidad");
-        String urlJDBC = "jdbc:mysql://localhost:3306/" + "parques";
-        conn = DriverManager.getConnection(urlJDBC, usuario, password);
         PreparedStatement ps = conn.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {//Siguiente fila
@@ -79,5 +76,30 @@ public class GestionBD {
         System.out.println(lista.toString());
         return lista;
     }
+//GETS Y SETS
+    public Connection getConn() {
+        return conn;
+    }
+
+    public void setConn(Connection conn) {
+        this.conn = conn;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 
 }
