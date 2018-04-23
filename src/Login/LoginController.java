@@ -122,8 +122,8 @@ public class LoginController implements Initializable {
                 loader.setLocation(getClass().getResource("/vista/Opciones.fxml"));
                 root = loader.load();
                 //OBTENER EL CONTROLADOR DE LA VENTANA
-                OpcionesController datos = loader.getController();
-                datos.setConn(gestion);
+                OpcionesController datosLogin = loader.getController();
+                datosLogin.setGestion(gestion);
                 Stage escenario = new Stage();
                 escenario.setTitle("Opciones");
                 escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL

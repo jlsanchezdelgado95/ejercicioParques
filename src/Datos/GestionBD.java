@@ -32,7 +32,6 @@ public class GestionBD {
         this.usuario = usuario;
         this.password = password;
     }
-    
 
     public boolean conexion() {
         boolean conectado = false;
@@ -76,6 +75,7 @@ public class GestionBD {
         System.out.println(lista.toString());
         return lista;
     }
+
 //GETS Y SETS
     public Connection getConn() {
         return conn;
@@ -100,6 +100,5 @@ public class GestionBD {
     public void setPassword(String password) {
         this.password = password;
     }
-    
 
 }

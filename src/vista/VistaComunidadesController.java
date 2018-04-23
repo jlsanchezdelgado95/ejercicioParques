@@ -29,7 +29,7 @@ import javafx.scene.control.TextField;
 public class VistaComunidadesController implements Initializable {
 
     private GestionBD conn;
-    private List <String> listadoComunidades = new ArrayList<>();
+    private List<String> listadoComunidades = new ArrayList<>();
     @FXML
     private TextField tfId;
     @FXML
@@ -38,9 +38,9 @@ public class VistaComunidadesController implements Initializable {
     private Integer id;
     private String nombre;
 
-    public VistaComunidadesController(GestionBD conn) {
-        this.conn = conn;
+    public VistaComunidadesController() {
     }
+    
 
     /**
      * Initializes the controller class.
@@ -48,21 +48,14 @@ public class VistaComunidadesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            Connection conexion = conn.getConn();
-            PreparedStatement ps = conexion.prepareStatement("select * from comunidad");
-            rs = ps.executeQuery();
-            id = rs.getInt("id");
-            nombre = rs.getString("nombre");
-            tfId.setText(String.valueOf(id));
-            tfNombre.setText(nombre);
-//            while(rs.next()){
-//                nombre = rs.getString("nombre");
-//                listadoComunidades.add(nombre);
-//            }
-            // TODO
+            cargarLista();
         } catch (SQLException ex) {
             Logger.getLogger(VistaComunidadesController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void cargarLista() throws SQLException {
+        listadoComunidades = conn.rellenarListaComunidades();
     }
 
     @FXML
