@@ -60,6 +60,15 @@ public class GestionBD {
         return filas;
     }
 
+    public int borrarParque(Integer idComunidad) throws SQLException {
+        int filas = 0;
+        String sql = ("delete from parque where id = ?");
+        PreparedStatement ps = conn.prepareCall(sql);
+        ps.setInt(1, idComunidad);
+        filas = ps.executeUpdate();//Se ejecuta el delete
+        return filas;
+    }
+
     public List rellenarListaComunidades() throws SQLException {
         List lista = new ArrayList();
         String id, nombreMetodo;
@@ -72,7 +81,25 @@ public class GestionBD {
             Comunidad comu = new Comunidad(id, nombreMetodo);
             lista.add(comu);
         }
-        System.out.println(lista.toString());
+        return lista;
+    }
+
+    public List rellenarListaParques() throws SQLException {
+        List lista = new ArrayList();
+        String nombreParque, extension, id, idComunidad;
+        String sql = ("select *" + " from parque");
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {//Siguiente fila
+            id = String.valueOf(rs.getInt("id"));
+            nombreParque = rs.getString("nombre");
+            extension = String.valueOf(rs.getDouble("extension"));
+            idComunidad = String.valueOf(rs.getInt("idComunidad"));
+            Parques parque = new Parques(Integer.parseInt(id), nombreParque, Double.parseDouble(extension), Integer.parseInt(idComunidad));
+            lista.add(parque);
+            System.out.println(parque);
+        }
+        System.out.println(lista);
         return lista;
     }
 

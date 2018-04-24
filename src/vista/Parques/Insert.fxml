@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="653.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.Parques.InsertController">
+<AnchorPane id="AnchorPane" prefHeight="569.0" prefWidth="653.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.Parques.ParquesInsertController">
    <children>
       <Label layoutX="56.0" layoutY="79.0" text="Id Parque" />
       <Label layoutX="56.0" layoutY="110.0" text="Nombre" />

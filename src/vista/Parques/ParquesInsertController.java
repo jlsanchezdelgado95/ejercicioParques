@@ -8,13 +8,10 @@ package vista.Parques;
 import Datos.GestionBD;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,7 +40,6 @@ public class ParquesInsertController implements Initializable {
     @FXML
     private ComboBox<Comunidad> cbComunidades;
     private GestionBD gestion;
-    private List listaInsert = new ArrayList<>();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,7 +49,6 @@ public class ParquesInsertController implements Initializable {
     @FXML
     private void Guardar(ActionEvent event) throws SQLException {
         Comunidad comu = cbComunidades.getSelectionModel().getSelectedItem();
-        System.out.println(comu);
         Parques p = new Parques((Integer.valueOf(tfIdParque.getText())), tfNombre.getText(), Double.valueOf(tfExtension.getText()), Integer.valueOf(comu.getId()));
         int numFilas = gestion.insertarParque(p);
         if (numFilas > 0) {
@@ -67,8 +62,8 @@ public class ParquesInsertController implements Initializable {
 
     public void cargarLista() {
         try {
-            listaInsert = gestion.rellenarListaComunidades();//ME DA UN NULO COMO UNA CASA, PORQUE?
-            cbComunidades.setItems((FXCollections.observableArrayList(listaInsert)));
+            cbComunidades.setItems((FXCollections.observableArrayList(gestion.rellenarListaComunidades())));
+            cbComunidades.getSelectionModel().selectFirst();
         } catch (SQLException ex) {
             Logger.getLogger(ParquesInsertController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -121,14 +116,6 @@ public class ParquesInsertController implements Initializable {
 
     public void setGestion(GestionBD gestion) {
         this.gestion = gestion;
-    }
-
-    public List getListaInsert() {
-        return listaInsert;
-    }
-
-    public void setListaInsert(List listaInsert) {
-        this.listaInsert = listaInsert;
     }
 
 }

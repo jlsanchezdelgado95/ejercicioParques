@@ -10,7 +10,7 @@ package modelo;
  * @author Kokekui
  */
 public class Parques {
-    
+
     private int idParque;
     private String nombre;
     private Double extension;
@@ -24,7 +24,6 @@ public class Parques {
     }
 
     //GETS Y SETS
-    
     public int getIdParque() {
         return idParque;
     }
@@ -56,8 +55,10 @@ public class Parques {
     public void setIdComunidad(int idComunidad) {
         this.idComunidad = idComunidad;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
+
 }
