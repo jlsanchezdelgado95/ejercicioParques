@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.Parques;
 
 import Datos.GestionBD;
 import java.net.URL;
@@ -30,7 +30,7 @@ import modelo.Parques;
  *
  * @author Kokekui
  */
-public class InsertController implements Initializable {
+public class ParquesInsertController implements Initializable {
 
     @FXML
     private TextField tfIdParque;
@@ -47,15 +47,7 @@ public class InsertController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            if (gestion == null) {
-                System.out.println("Conexion es nulo en InsertController");
-            }
-            listaInsert = gestion.rellenarListaComunidades();//ME DA UN NULO COMO UNA CASA, PORQUE?
-            cbComunidades.setItems((FXCollections.observableArrayList(listaInsert)));
-        } catch (SQLException ex) {
-            Logger.getLogger(InsertController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 
     @FXML
@@ -70,6 +62,15 @@ public class InsertController implements Initializable {
             alert.setHeaderText("Mas informacion");
             alert.setContentText("Se ha introducido correctamente");
             alert.showAndWait();
+        }
+    }
+
+    public void cargarLista() {
+        try {
+            listaInsert = gestion.rellenarListaComunidades();//ME DA UN NULO COMO UNA CASA, PORQUE?
+            cbComunidades.setItems((FXCollections.observableArrayList(listaInsert)));
+        } catch (SQLException ex) {
+            Logger.getLogger(ParquesInsertController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

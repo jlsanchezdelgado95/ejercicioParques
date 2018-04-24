@@ -26,9 +26,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import modelo.Comunidad;
-import vista.DeleteController;
+import vista.Parques.ParquesDeleteController;
 import vista.OpcionesController;
-import vista.UpdateController;
+import vista.Parques.ParquesUpdateController;
 
 /**
  *
@@ -82,7 +82,7 @@ public class LoginController implements Initializable {
             loader.setLocation(getClass().getResource("/vista/Delete.fxml"));
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
-            DeleteController datosBorrar = loader.getController();
+            ParquesDeleteController datosBorrar = loader.getController();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para borrar");
             escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -100,7 +100,7 @@ public class LoginController implements Initializable {
             loader.setLocation(getClass().getResource("/vista/Update.fxml"));
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
-            UpdateController datosBorrar = loader.getController();
+            ParquesUpdateController datosBorrar = loader.getController();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para modificar");
             escenario.initModality(Modality.APPLICATION_MODAL);  // NO PERMITE ACCESO A LA VENTANA PRINCIPAL

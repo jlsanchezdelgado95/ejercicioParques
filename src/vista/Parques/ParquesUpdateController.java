@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package vista;
+package vista.Parques;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
  *
  * @author Kokekui
  */
-public class UpdateController implements Initializable {
+public class ParquesUpdateController implements Initializable {
 
     /**
      * Initializes the controller class.

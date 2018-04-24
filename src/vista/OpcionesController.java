@@ -5,6 +5,9 @@
  */
 package vista;
 
+import vista.Comunidades.VistaComunidadesController;
+import vista.Parques.ParquesDeleteController;
+import vista.Parques.ParquesInsertController;
 import Datos.GestionBD;
 import java.io.IOException;
 import java.net.URL;
@@ -44,11 +47,12 @@ public class OpcionesController implements Initializable {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/vista/Insert.fxml"));
+            loader.setLocation(getClass().getResource("/vista/Parques/Insert.fxml"));
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
-            InsertController datosInsert = loader.getController();
+            ParquesInsertController datosInsert = loader.getController();
             datosInsert.setGestion(gestion);
+            datosInsert.cargarLista();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para insertar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -56,7 +60,6 @@ public class OpcionesController implements Initializable {
             escenario.showAndWait();
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de insertar");
-            ex.printStackTrace();
         }
     }
 
@@ -65,10 +68,10 @@ public class OpcionesController implements Initializable {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/vista/Delete.fxml"));
+            loader.setLocation(getClass().getResource("/vista/Parques/Delete.fxml"));
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
-            DeleteController datos = loader.getController();
+            ParquesDeleteController datos = loader.getController();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para borrar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
@@ -76,8 +79,6 @@ public class OpcionesController implements Initializable {
             escenario.showAndWait();
         } catch (IOException ex) {
             System.out.println("ERROR IOExcepction:  No se encuentra la ventana de borrar");
-            ex.getStackTrace();
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -90,11 +91,12 @@ public class OpcionesController implements Initializable {
         Parent root;
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/vista/vistaComunidades.fxml"));
+            loader.setLocation(getClass().getResource("/vista/Comunidades/vistaComunidades.fxml"));
             root = loader.load();
             //OBTENER EL CONTROLADOR DE LA VENTANA
             VistaComunidadesController datos = loader.getController();
             datos.setConn(gestion);
+            datos.cargarLista();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para borrar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
