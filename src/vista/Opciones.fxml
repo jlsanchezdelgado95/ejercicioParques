@@ -11,8 +11,8 @@
       <Button layoutX="152.0" layoutY="52.0" mnemonicParsing="false" onAction="#InsertarParque" prefHeight="50.0" prefWidth="100.0" text="Insertar" AnchorPane.leftAnchor="152.0" />
       <Button layoutX="152.0" layoutY="132.0" mnemonicParsing="false" onAction="#BorrarParque" prefHeight="50.0" prefWidth="100.0" text="Borrar" />
       <Button layoutX="292.0" layoutY="52.0" mnemonicParsing="false" onAction="#ModificarParque" prefHeight="50.0" prefWidth="100.0" text="Modificar" />
-      <Button layoutX="300.0" layoutY="304.0" mnemonicParsing="false" onAction="#verComunidades" prefHeight="57.0" prefWidth="145.0" text="VER COMUNIDADES" />
-      <Separator layoutX="34.0" layoutY="189.0" prefHeight="14.0" prefWidth="531.0" />
+      <Button layoutX="292.0" layoutY="317.0" mnemonicParsing="false" onAction="#verComunidades" prefHeight="57.0" prefWidth="100.0" text="VER COMUNIDADES" />
+      <Separator layoutX="34.0" layoutY="189.0" prefHeight="14.0" prefWidth="363.0" />
       <Button layoutX="292.0" layoutY="132.0" mnemonicParsing="false" onAction="#verParques" prefHeight="50.0" prefWidth="100.0" text="Ver parques" />
       <Label layoutX="34.0" layoutY="14.0" prefHeight="41.0" prefWidth="117.0" text="PARQUES">
          <font>
@@ -24,8 +24,9 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Button layoutX="158.0" layoutY="253.0" mnemonicParsing="false" onAction="#InsertarComunidad" text="Insertar" />
-      <Button layoutX="292.0" layoutY="241.0" mnemonicParsing="false" onAction="#ModificarComunidad" text="Modificar" />
-      <Button layoutX="165.0" layoutY="320.0" mnemonicParsing="false" onAction="#BorrarComunidad" text="Borrar" />
+      <Button layoutX="158.0" layoutY="250.0" mnemonicParsing="false" onAction="#InsertarComunidad" prefHeight="57.0" prefWidth="100.0" text="Insertar" />
+      <Button layoutX="292.0" layoutY="250.0" mnemonicParsing="false" onAction="#ModificarComunidad" prefHeight="57.0" prefWidth="100.0" text="Modificar" />
+      <Button layoutX="160.0" layoutY="317.0" mnemonicParsing="false" onAction="#BorrarComunidad" prefHeight="57.0" prefWidth="100.0" text="Borrar" />
+      <Button layoutX="458.0" layoutY="91.0" mnemonicParsing="false" onAction="#filtrarParques" prefHeight="50.0" prefWidth="100.0" text="Filtrar" />
    </children>
 </AnchorPane>

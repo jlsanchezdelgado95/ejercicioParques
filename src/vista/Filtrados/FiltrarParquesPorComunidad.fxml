@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="755.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="vista.Filtrados.FiltrarParquesPorComunidadController">
+   <children>
+      <ComboBox fx:id="cbComunidades" layoutX="303.0" layoutY="61.0" prefWidth="150.0" />
+      <TableView fx:id="ParquesTableView" layoutY="115.0" prefHeight="515.0" prefWidth="755.0">
+        <columns>
+          <TableColumn fx:id="idParque" prefWidth="149.0" text="ID" />
+          <TableColumn fx:id="nombreParque" minWidth="0.0" prefWidth="349.0" text="Nombre del parque" />
+            <TableColumn fx:id="extension" prefWidth="256.0" text="Extension" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

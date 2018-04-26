@@ -8,7 +8,6 @@ package vista.Comunidades;
 import vista.Parques.ParquesInsertController;
 import Datos.GestionBD;
 import java.net.URL;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
