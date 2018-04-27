@@ -60,12 +60,35 @@ public class GestionBD {
         return filas;
     }
 
-    public int borrarParque(Integer idComunidad) throws SQLException {
+    public int borrarParque(Integer idParque) throws SQLException {
         int filas = 0;
         String sql = ("delete from parque where id = ?");
         PreparedStatement ps = conn.prepareCall(sql);
-        ps.setInt(1, idComunidad);
+        ps.setInt(1, idParque);
         filas = ps.executeUpdate();//Se ejecuta el delete
+        return filas;
+    }
+    
+    public int modificarParque(Integer idParqueViejo, String nombreViejo, int idParqueNuevo, String nombreNuevo, double extension, int idComunidad){
+        int filas = 0;
+        String sql = ("update parque set id = ? "
+                + " set nombre = ?"
+                + " set extension = ?"
+                + " set idComunidad = ?"
+                + "where id = ?"
+                + " or nombre = ?");
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idParqueNuevo);
+            ps.setString(2, nombreNuevo);
+            ps.setDouble(3, extension);
+            ps.setInt(4, idComunidad);
+            ps.setInt(5, idParqueViejo);
+            ps.setString(6, nombreViejo);
+            filas = ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return filas;
     }
 

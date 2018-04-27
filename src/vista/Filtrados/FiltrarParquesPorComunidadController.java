@@ -60,9 +60,9 @@ public class FiltrarParquesPorComunidadController implements Initializable {
             cbComunidades.setItems(FXCollections.observableArrayList(listComu));
             cbComunidades.getSelectionModel().selectFirst();
             ParquesTableView.setItems(FXCollections.observableArrayList(gestion.rellenarListaParques()));
-            idParque.setCellValueFactory(new PropertyValueFactory<>("idParqueFX"));
-            nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombreParqueFX"));
-            extension.setCellValueFactory(new PropertyValueFactory<>("extensionFX"));
+            idParque.setCellValueFactory(new PropertyValueFactory<>("idParque"));
+            nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            extension.setCellValueFactory(new PropertyValueFactory<>("extension"));
         } catch (SQLException ex) {
             Logger.getLogger(ParquesInsertController.class.getName()).log(Level.SEVERE, null, ex);
         }

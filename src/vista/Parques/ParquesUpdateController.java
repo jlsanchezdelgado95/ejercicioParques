@@ -5,6 +5,7 @@
  */
 package vista.Parques;
 
+import Datos.GestionBD;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -15,6 +16,8 @@ import javafx.fxml.Initializable;
  * @author Kokekui
  */
 public class ParquesUpdateController implements Initializable {
+    
+    GestionBD gestion;
 
     /**
      * Initializes the controller class.
