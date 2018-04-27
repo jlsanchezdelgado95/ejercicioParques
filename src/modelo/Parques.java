@@ -31,6 +31,9 @@ public class Parques {
         this.nombre = nombre;
         this.extension = extension;
         this.idComunidad = idComunidad;
+        idParqueFX.set(idParque);
+        nombreParqueFX.set(nombre);
+        extensionFX.set(extension);
     }
 
     public int getIdParqueFX() {

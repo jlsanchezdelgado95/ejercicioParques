@@ -14,11 +14,14 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import modelo.Comunidad;
 import modelo.Parques;
 import vista.Parques.ParquesInsertController;
@@ -41,6 +44,7 @@ public class FiltrarParquesPorComunidadController implements Initializable {
     private TableColumn<Parques, Double> extension;
     @FXML
     private TableView<Parques> ParquesTableView;
+    private ObservableList<Comunidad> listComu;
 
     /**
      * Initializes the controller class.
@@ -50,15 +54,28 @@ public class FiltrarParquesPorComunidadController implements Initializable {
         // TODO
     }
 
-    public void cargarLista() {
+    public void cargarListas() {
         try {
-            cbComunidades.setItems(FXCollections.observableArrayList(gestion.rellenarListaComunidades()));
+            listComu = FXCollections.observableArrayList(gestion.rellenarListaComunidades());
+            cbComunidades.setItems(FXCollections.observableArrayList(listComu));
             cbComunidades.getSelectionModel().selectFirst();
-            
-            
+            ParquesTableView.setItems(FXCollections.observableArrayList(gestion.rellenarListaParques()));
+            idParque.setCellValueFactory(new PropertyValueFactory<>("idParqueFX"));
+            nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombreParqueFX"));
+            extension.setCellValueFactory(new PropertyValueFactory<>("extensionFX"));
         } catch (SQLException ex) {
             Logger.getLogger(ParquesInsertController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void filtrar(ActionEvent event) throws SQLException {
+        Comunidad comu = cbComunidades.getValue();
+        int comuId = Integer.valueOf(comu.getId());
+        ParquesTableView.setItems(FXCollections.observableArrayList(gestion.buscarParques(comuId)));
+            idParque.setCellValueFactory(new PropertyValueFactory<>("idParque"));
+            nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+            extension.setCellValueFactory(new PropertyValueFactory<>("extension"));
     }
 
     //GETS Y SETS

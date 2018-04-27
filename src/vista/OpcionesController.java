@@ -11,7 +11,6 @@ import vista.Parques.ParquesInsertController;
 import Datos.GestionBD;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -163,6 +162,7 @@ public class OpcionesController implements Initializable {
             //OBTENER EL CONTROLADOR DE LA VENTANA
             FiltrarParquesPorComunidadController datosFiltrar = loader.getController();
             datosFiltrar.setGestion(gestion);
+            datosFiltrar.cargarListas();
             Stage escenario = new Stage();
             escenario.setTitle("Ventana para borrar");
             escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL

@@ -103,6 +103,25 @@ public class GestionBD {
         return lista;
     }
 
+    public List buscarParques(int idComunidadMetodo) throws SQLException {
+        List lista = new ArrayList();
+        String nombreParque, extension, id, idComunidad;
+        String sql = ("select *" + " from parque" + " where idComunidad = ?");
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, idComunidadMetodo);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            id = String.valueOf(rs.getInt("id"));
+            nombreParque = rs.getString("nombre");
+            extension = String.valueOf(rs.getDouble("extension"));
+            idComunidad = String.valueOf(rs.getInt("idComunidad"));
+            Parques parque = new Parques(Integer.parseInt(id), nombreParque, Double.parseDouble(extension), Integer.parseInt(idComunidad));
+            lista.add(parque);
+            System.out.println(parque);
+        }
+        return lista;
+    }
+
 //GETS Y SETS
     public Connection getConn() {
         return conn;
