@@ -8,8 +8,6 @@ package vista.Filtrados;
 import Datos.GestionBD;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -73,9 +71,9 @@ public class FiltrarParquesPorComunidadController implements Initializable {
         Comunidad comu = cbComunidades.getValue();
         int comuId = Integer.valueOf(comu.getId());
         ParquesTableView.setItems(FXCollections.observableArrayList(gestion.buscarParques(comuId)));
-            idParque.setCellValueFactory(new PropertyValueFactory<>("idParque"));
-            nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-            extension.setCellValueFactory(new PropertyValueFactory<>("extension"));
+        idParque.setCellValueFactory(new PropertyValueFactory<>("idParque"));
+        nombreParque.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        extension.setCellValueFactory(new PropertyValueFactory<>("extension"));
     }
 
     //GETS Y SETS

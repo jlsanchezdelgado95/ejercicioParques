@@ -68,8 +68,11 @@ public class GestionBD {
         filas = ps.executeUpdate();//Se ejecuta el delete
         return filas;
     }
-    
-    public int modificarParque(Integer idParqueViejo, String nombreViejo, int idParqueNuevo, String nombreNuevo, double extension, int idComunidad){
+
+    public int modificarParque(Parques p) {
+        int idParqueViejo, idParqueNuevo = p.getIdParque(),idComunidad = p.getIdComunidad();
+        String nombreViejo, nombreNuevo = p.getNombre();
+        double extension = p.getExtension();
         int filas = 0;
         String sql = ("update parque set id = ? "
                 + " set nombre = ?"
@@ -83,8 +86,8 @@ public class GestionBD {
             ps.setString(2, nombreNuevo);
             ps.setDouble(3, extension);
             ps.setInt(4, idComunidad);
-            ps.setInt(5, idParqueViejo);
-            ps.setString(6, nombreViejo);
+//            ps.setInt(5, idParqueViejo);//Como meto esto?
+//            ps.setString(6, nombreViejo);COMO METO ESTO?
             filas = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GestionBD.class.getName()).log(Level.SEVERE, null, ex);

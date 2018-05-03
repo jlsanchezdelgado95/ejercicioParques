@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import vista.Filtrados.FiltrarParquesPorComunidadController;
+import vista.Parques.ParquesUpdateController;
 import vista.Parques.VistaParquesController;
 
 /**
@@ -138,6 +139,23 @@ public class OpcionesController implements Initializable {
 
     @FXML
     private void ModificarParque(ActionEvent event) {
+        Parent root;
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/vista/Parques/Update.fxml"));
+            root = loader.load();
+            //OBTENER EL CONTROLADOR DE LA VENTANA
+            ParquesUpdateController datosborrar = loader.getController();
+            datosborrar.setGestion(gestion);
+            datosborrar.cargarParques();
+            Stage escenario = new Stage();
+            escenario.setTitle("Ventana para borrar");
+            escenario.initModality(Modality.APPLICATION_MODAL); // NO PERMITE ACCESO A LA VENTANA PRINCIPAL
+            escenario.setScene(new Scene(root));
+            escenario.showAndWait();
+        } catch (IOException ex) {
+            System.out.println("ERROR IOExcepction:  No se encuentra la ventana de modificar parque");
+        }
     }
 
     @FXML
