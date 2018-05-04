@@ -70,24 +70,16 @@ public class GestionBD {
     }
 
     public int modificarParque(Parques p) {
-        int idParqueViejo, idParqueNuevo = p.getIdParque(),idComunidad = p.getIdComunidad();
-        String nombreViejo, nombreNuevo = p.getNombre();
+        int idParque = p.getIdParque();
+        String nombreParque = p.getNombre();
         double extension = p.getExtension();
         int filas = 0;
-        String sql = ("update parque set id = ? "
-                + " set nombre = ?"
-                + " set extension = ?"
-                + " set idComunidad = ?"
-                + "where id = ?"
-                + " or nombre = ?");
+        String sql = ("update parque set nombre = ? ,extension = ?  where id = ?");
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, idParqueNuevo);
-            ps.setString(2, nombreNuevo);
-            ps.setDouble(3, extension);
-            ps.setInt(4, idComunidad);
-//            ps.setInt(5, idParqueViejo);//Como meto esto?
-//            ps.setString(6, nombreViejo);COMO METO ESTO?
+            ps.setString(1, nombreParque);
+            ps.setDouble(2, extension);
+            ps.setInt(3, idParque);
             filas = ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(GestionBD.class.getName()).log(Level.SEVERE, null, ex);
